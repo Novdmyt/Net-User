@@ -16,5 +16,10 @@ public class ServerHandler extends SimpleChannelInboundHandler<String > {
             c.writeAndFlush("Hello " + msg + '\n');
         }
     }
-   
+    @Override
+    public void channelActive(final ChannelHandlerContext ctx) {
+        System.out.println("Client joined - " + ctx);
+        channels.add(ctx.channel());
+    }
+
 }
