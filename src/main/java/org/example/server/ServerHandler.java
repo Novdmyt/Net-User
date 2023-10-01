@@ -21,5 +21,9 @@ public class ServerHandler extends SimpleChannelInboundHandler<String > {
         System.out.println("Client joined - " + ctx);
         channels.add(ctx.channel());
     }
-
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+        System.out.println("Closing connection for client - " + ctx);
+        ctx.close();
+    }
 }
